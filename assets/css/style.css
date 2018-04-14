@@ -12,6 +12,8 @@ body {
     margin-right: auto;
   }
 
+  
+
   h1 {
       color: #b9137c;
       font-family: 'Barrio', sans-serif;
@@ -24,7 +26,7 @@ body {
       letter-spacing: 1.5px;
   }
   
-  .startButton {
+  .startButton, .resetButton {
     margin-top: 175px;
     max-width: 200px;
     margin-left: auto;
@@ -34,28 +36,28 @@ body {
   }
   
   .timerText {
-    font-size: 20px;
+    font-size: 15px;
     color: white;
   }
   
   .questionText {
-    font-size: 30px;
+    font-size: 25px;
     color: white;
   }
   
   .correctText, .wrongText, .timeOutText, .finishedText {
-      font-size: 50px;
+      font-size: 25px;
       color: white;
   }
   
   .summaryCorrect, .summaryWrong, .summaryUnanswered {
-    font-size: 20px;
+    font-size: 25px;
     color: white;
   }
   
   #timer {
       color: #7db539;
-      font-size: 40px;
+      font-size: 30px;
       font-weight: bold;
   }
   
@@ -74,12 +76,13 @@ body {
   }
   
   .imgWrong, .imgCorrect {
-    margin-top: 40px;
+    margin-top: 8px;
     width: 250px;
+    height: 250px;
   }
   
   .questionText {
-    margin-bottom: 50px;
+    margin-bottom: 20px;
   }
   
   .resetButton {

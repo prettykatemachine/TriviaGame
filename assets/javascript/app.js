@@ -38,45 +38,45 @@ $(document).ready(function() {
 			]
 		},
 		{ 
-			question: "question number four?",
+			question: "Who invented the solid-body electric guitar that made rock 'n roll possible?",
 			answers: [
-				{text: "answer", isCorrect: false},
-				{text: "answer", isCorrect: false},
-				{text: "answer", isCorrect: false},
-				{text: "answer", isCorrect: true}
+				{text: "Chuck Berry", isCorrect: false},
+				{text: "Orville Gibson", isCorrect: false},
+				{text: "Leo Fender", isCorrect: false},
+				{text: "Les Paul", isCorrect: true}
 			]
 		},
 		{
-			question: "Question number five?",
+			question: "Jimi Hendrix got his first big hit in America.",
 			answers: [
-				{text: "answer", isCorrect: true},
-				{text: "answer", isCorrect: false}
+				{text: "False", isCorrect: true},
+				{text: "True", isCorrect: false}
 			]
 		},
 		{
-			question: "question number 6?",
+			question: "What was Eddie Van Halen's first instrument?",
 			answers: [
-				{text: "answer", isCorrect: false},
-				{text: "answer", isCorrect: false},
-				{text: "answer", isCorrect: true},
-				{text: "answer", isCorrect: false}
+				{text: "Guitar", isCorrect: false},
+				{text: "Drums", isCorrect: false},
+				{text: "Piano", isCorrect: true},
+				{text: "Didgeridoo", isCorrect: false}
 			]
 		},
 		{ 
-			question: "Question number seven?",
+			question: "Who was the first female solo artist to be inducted into the County Music Hall of Fame?",
 			answers: [
-				{text: "answer", isCorrect: false},
-				{text: "answer", isCorrect: true},
-				{text: "answer", isCorrect: false},
-				{text: "answer", isCorrect: false}
+				{text: "Dolly Parton", isCorrect: false},
+				{text: "Patsy Cline", isCorrect: true},
+				{text: "June Carter", isCorrect: false},
+				{text: "Tammy Wynette", isCorrect: false}
 			]	
 		},
 		{
-			question: "eight is a great number of questions, right?",
+			question: "What was Prince's favorite meal during the Purple Rain era?",
 			answers: [
-				{text: "answer", isCorrect: true},
-				{text: "answer", isCorrect: false},
-				{text: "answer", isCorrect: false}
+				{text: "Spaghetti and Orange Juice", isCorrect: true},
+				{text: "Pancakes", isCorrect: false},
+				{text: "Purple Smoothie", isCorrect: false}
 			]
 		},
 	
@@ -99,7 +99,7 @@ $(document).ready(function() {
 	function generateWin() {
 		correct++;
 		var correctAnswerText = "<p class='correctText text-center'>CORRECT!</p>";
-		var imgHTML = "<img class='center-block imgCorrect' src='assets/images/smile.png'>";
+		var imgHTML = "<img class='center-block imgCorrect' src='assets/images/correct.png'>";
 		gameHTML = correctAnswerText + imgHTML;
 		$(".mainArea").html(gameHTML);
 		setTimeout(nextDisplay, 3000);  
@@ -108,7 +108,7 @@ $(document).ready(function() {
 	function generateLoss() {
 		incorrect++;
 		var wrongAnswerText = "<p class='wrongText text-center'>INCORRECT</p>";
-		var imgHTML = "<img class='center-block imgWrong' src='assets/images/frown.png'>";
+		var imgHTML = "<img class='center-block imgWrong' src='assets/images/incorrect.png'>";
 		gameHTML = wrongAnswerText + imgHTML;
 		$(".mainArea").html(gameHTML);
 		setTimeout(nextDisplay, 3000); 
@@ -116,7 +116,7 @@ $(document).ready(function() {
 	function generateLossAtTimeOut() {
 		unanswered++;
 		var timeOutText = "<p class='timeOutText text-center'>TIME'S UP!</p>";
-		var imgHTML = "<img class='center-block imgWrong' src='assets/images/frown.png'>";
+		var imgHTML = "<img class='center-block imgWrong' src='assets/images/timesup.jpg'>";
 		gameHTML =  timeOutText + imgHTML;
 		$(".mainArea").html(gameHTML);
 		setTimeout(nextDisplay, 3000);  
@@ -135,8 +135,37 @@ $(document).ready(function() {
 		}
 	}
 //setup nextDisplay - if we take one question out of the array, then load another question and restart the timer.
+function nextDisplay() {
+	if (questionCounter < questionArray.length - 1) {
+		questionCounter++;
+		generateHTML();
+		counter = 20;
+		timer();
+	} else {
+		finalScreen();
+	}
+}
+//setup final results screen that includes number of correct/incorrect answers, reset button
+function finalScreen() {
+	var finishedText = "<p class='finishedText text-center'>Here's how you did!</p>";
+	var summaryCorrectHTML = "<p class='summaryCorrect text-center'>Correct Answers: " + correct + "</p>";
+	var summaryWrongHTML = "<p class='summaryWrong text-center'>Wrong Answers: " + incorrect + "</p>";
+	var summaryUnansweredHTML = "<p class='summaryUnanswered text-center'>Unanswered: " + unanswered + "</p>";
+	var resetButtonHTML = "<button class='resetButton btn btn-info btn-lg btn-block text-center' type='button'>PLAY AGAIN</button>";
+	gameHTML = finishedText + summaryCorrectHTML + summaryWrongHTML + summaryUnansweredHTML + resetButtonHTML;
+	$(".mainArea").html(gameHTML);
+}
 
-    
+function resetGame() {
+	questionCounter = 0;
+	correct = 0;
+	incorrect = 0;
+	unanswered = 0;
+	counter = 20;
+	generateHTML();
+	timer();
+}
+
     function initialScreen() {
 		var initialText = "<p class='initialText text-center'>Test your music knowledge!!!</p> <p class='initialText text-center'>There are 8 questions total and you will have 20 seconds to answer each one. Good luck!</p>";
 		var startButtonHTML = "<button class='startButton btn btn-info btn-lg btn-block text-center' type='button'>Let's Play!</button>";
@@ -172,3 +201,4 @@ $(document).ready(function() {
     initialScreen();
 
 });  
+
